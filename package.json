@@ -37,7 +37,6 @@
   "dependencies": {
     "@adonisjs/env": "^6.2.0",
     "@atproto/common": "^0.4.12",
-    "@atproto/crypto": "^0.4.4",
     "@atproto/oauth-types": "^0.5.0",
     "dbmate": "^2.28.0",
     "dedent": "^1.7.0",

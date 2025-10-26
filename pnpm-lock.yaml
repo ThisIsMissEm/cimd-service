@@ -14,9 +14,6 @@ importers:
       '@atproto/common':
         specifier: ^0.4.12
         version: 0.4.12
-      '@atproto/crypto':
-        specifier: ^0.4.4
-        version: 0.4.4
       '@atproto/oauth-types':
         specifier: ^0.5.0
         version: 0.5.0
@@ -84,10 +81,6 @@ packages:
 
   '@atproto/common@0.4.12':
     resolution: {integrity: sha512-NC+TULLQiqs6MvNymhQS5WDms3SlbIKGLf4n33tpftRJcalh507rI+snbcUb7TLIkKw7VO17qMqxEXtIdd5auQ==}
-    engines: {node: '>=18.7.0'}
-
-  '@atproto/crypto@0.4.4':
-    resolution: {integrity: sha512-Yq9+crJ7WQl7sxStVpHgie5Z51R05etaK9DLWYG/7bR5T4bhdcIgF6IfklLShtZwLYdVVj+K15s0BqW9a8PSDA==}
     engines: {node: '>=18.7.0'}
 
   '@atproto/did@0.2.1':
@@ -394,14 +387,6 @@ packages:
   '@lukeed/ms@2.0.2':
     resolution: {integrity: sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA==}
     engines: {node: '>=8'}
-
-  '@noble/curves@1.9.7':
-    resolution: {integrity: sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==}
-    engines: {node: ^14.21.3 || >=16}
-
-  '@noble/hashes@1.8.0':
-    resolution: {integrity: sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A==}
-    engines: {node: ^14.21.3 || >=16}
 
   '@poppinss/exception@1.2.2':
     resolution: {integrity: sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg==}
@@ -1108,12 +1093,6 @@ snapshots:
       multiformats: 9.9.0
       pino: 8.21.0
 
-  '@atproto/crypto@0.4.4':
-    dependencies:
-      '@noble/curves': 1.9.7
-      '@noble/hashes': 1.8.0
-      uint8arrays: 3.0.0
-
   '@atproto/did@0.2.1':
     dependencies:
       zod: 3.25.76
@@ -1322,12 +1301,6 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.5
 
   '@lukeed/ms@2.0.2': {}
-
-  '@noble/curves@1.9.7':
-    dependencies:
-      '@noble/hashes': 1.8.0
-
-  '@noble/hashes@1.8.0': {}
 
   '@poppinss/exception@1.2.2': {}
 
