@@ -1,0 +1,13 @@
+[mounts]
+source = "data"
+destination = "/data"
+auto_extend_size_threshold = 80
+auto_extend_size_increment = "1GB"
+auto_extend_size_limit = "10GB"
+
+[[http_service.checks]]
+grace_period = "10s"
+interval = "30s"
+method = "GET"
+timeout = "5s"
+path = "/_health"
