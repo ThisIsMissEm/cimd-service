@@ -1,0 +1,14 @@
+{
+  "client_id": "http://example.com/client-metadata.json",
+  "client_name": "Example Client",
+  "redirect_uris": [
+    "http://localhost:8080/oauth/callback",
+    "https://example.com/oauth/callback"
+  ],
+  "response_types": ["code"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "token_endpoint_auth_method": "none",
+  "scope": "atproto transition:generic",
+  "dpop_bound_access_tokens": true,
+  "application_type": "web"
+}
