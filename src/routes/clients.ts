@@ -52,6 +52,7 @@ router.get("/:id", async (c) => {
   return c.json({
     ...client.metadata,
     client_id: getClientId(client.cid, c.var.publicUrl),
+    client_uri: c.var.publicUrl,
   });
 });
 
