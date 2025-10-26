@@ -9,6 +9,7 @@ import type { DatabaseSync } from "node:sqlite";
 import type { Environment } from "./env.js";
 
 import clients from "./routes/clients.js";
+import home from "./routes/home.js";
 
 let name: string = "cimd-service";
 let version: string = "unknown";
@@ -52,24 +53,8 @@ router.use(
   })
 );
 
-router.get("/", (c) => {
-  return c.text(`
-  ${name} @ ${version}
-
-
-  This is a Client ID Metadata Documents Service, send it your Client ID Metadata Document,
-  and it will return you a URL to a publicly available copy.
-
-  What are Client ID Metadata Documents? See: https://cimd.dev
-
-  Endpoints:
-
-    GET  /_health
-    GET  /clients/:id
-    POST /clients with your Client ID Metadata Document as the JSON body
-
-`);
-});
+const homeRouter = home({ name, version });
+router.route("/", homeRouter);
 
 router.get("/_health", async function (c) {
   try {
