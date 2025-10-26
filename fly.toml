@@ -9,6 +9,7 @@ primary_region = 'iad'
 [env]
   PORT = "3000"
   DB_PATH="/data/db.sqlite"
+  PUBLIC_URL="https://cimd-service.fly.dev/"
 
 [build]
 
