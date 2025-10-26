@@ -65,13 +65,14 @@ router.get("/_health", async function (c) {
       {
         name,
         version,
+        healthy: false,
         error: "service_unavailable",
       },
       503
     );
   }
 
-  return c.json({ name, version });
+  return c.json({ name, version, healthy: true }, 200);
 });
 
 router.route("/clients", clients);
