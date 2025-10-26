@@ -1,7 +1,14 @@
 import { Hono } from "hono";
 import { requestId } from "hono/request-id";
 import { logger } from "hono/logger";
+import { cors } from "hono/cors";
 import fs from "node:fs/promises";
+import path from "node:path";
+
+import type { DatabaseSync } from "node:sqlite";
+import type { Environment } from "./env.js";
+
+import clients from "./routes/clients.js";
 
 let name: string = "cimd-service";
 let version: string = "unknown";
@@ -17,11 +24,6 @@ const packageJson = JSON.parse(
 
 version = packageJson.version;
 name = packageJson.name.split("/", 2)[1];
-
-import clients from "./routes/clients.js";
-import path from "node:path";
-import type { DatabaseSync } from "node:sqlite";
-import type { Environment } from "./env.js";
 
 export type AppEnv = {
   Variables: {
@@ -42,6 +44,13 @@ router.onError((err, c) => {
 
 router.use("*", requestId());
 router.use("*", logger());
+router.use(
+  "*",
+  cors({
+    origin: "*",
+    allowMethods: ["GET", "POST"],
+  })
+);
 
 router.get("/", (c) => {
   return c.text(`
