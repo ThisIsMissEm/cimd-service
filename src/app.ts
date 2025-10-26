@@ -53,7 +53,7 @@ router.use(
   })
 );
 
-const homeRouter = home({ name, version });
+const homeRouter = home({ name, version, repoUrl: packageJson.repository.url });
 router.route("/", homeRouter);
 
 router.get("/_health", async function (c) {

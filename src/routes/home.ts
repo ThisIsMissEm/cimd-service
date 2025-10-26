@@ -4,9 +4,10 @@ import type { AppEnv } from "../app.js";
 type Metadata = {
   name: string;
   version: string;
+  repoUrl: string;
 };
 
-export default ({ name, version }: Metadata) => {
+export default ({ name, version, repoUrl }: Metadata) => {
   const router = new Hono<AppEnv>();
 
   router.get("/", (c) => {
@@ -49,11 +50,11 @@ export default ({ name, version }: Metadata) => {
   margin-bottom: 2.5rem;
   color: var(--heading-color);
 }
-#main p + p, #main ul + p {
-  margin-block: 2.5rem;
-}
-#main p ~ ul, #main ul ~ p {
+#main p + p, #main ul + p, .space-after {
   margin-block: 2rem;
+}
+#main p:not(.space-after) ~ ul, #main ul ~ p:not(.space-after) {
+  margin-block: 1.5rem;
 }
 #main ul {
   white-space: collapse;
@@ -61,6 +62,7 @@ export default ({ name, version }: Metadata) => {
 }
 #main ul.routes {
   list-style-type: none;
+  margin-block: 2.5rem;
 }
 #main ul li {
   margin-block-end: 0.5rem;
@@ -83,7 +85,7 @@ you a URL to a publicly available copy.<p>
     <li>POST /clients</li>
   </ul>
 
-  <p>To get a <strong>client_id</strong>, send a <strong>POST</strong> request to <strong>/clients</strong> with the request body as the contents
+  <p class="space-after">To get a <strong>client_id</strong>, send a <strong>POST</strong> request to <strong>/clients</strong> with the request body as the contents
   of your Client ID Metadata Document (JSON).</p>
 
   <p>All clients created on this server will receive the:</p>
@@ -92,6 +94,8 @@ you a URL to a publicly available copy.<p>
     <li><strong>client_uri</strong> of: ${publicUrl}</li>
     <li><strong>client_name</strong> ending with <strong>(Development)</strong>
   </ul>
+  <br />
+  <p>Source code: <a href="${repoUrl}" title="Link to source code repository">${repoUrl}</a></p>
 </pre>
 </body>
 `);
