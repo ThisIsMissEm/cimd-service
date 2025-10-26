@@ -67,6 +67,7 @@ router.get("/:id", async (c) => {
     ...client.metadata,
     client_id: getClientId(client.cid, c.var.publicUrl),
     client_uri: c.var.publicUrl,
+    client_name: `${client.metadata.client_name} (Development)`,
   };
 
   // Revalidate the client metadata we're sending back:
