@@ -1,8 +1,7 @@
 {
-  "client_id": "https://example.com/client-metadata.json",
+  "client_id": "http://example.com/client-metadata.json",
   "client_name": "Example Client",
-  "client_uri": "https://example.com/",
-  "redirect_uris": ["https://example.com/oauth/callback"],
+  "redirect_uris": ["http://127.0.0.1:5173/oauth/callback"],
   "response_types": ["code"],
   "grant_types": ["authorization_code", "refresh_token"],
   "token_endpoint_auth_method": "none",

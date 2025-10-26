@@ -66,7 +66,7 @@ function rowToClient(row: NonNullable<ClientRow>): Client {
   }
 
   const metadata = stringToJSONSchema
-    .pipe(clientMetadataSchema.omit({ client_id: true }))
+    .pipe(clientMetadataSchema)
     .safeParse(row["metadata"].toString());
 
   if (!metadata.success) {
@@ -132,10 +132,9 @@ export async function touchClient(
   };
 }
 
-export async function createClient({
-  client_id,
-  ...clientMetadata
-}: ClientMetadata): Promise<Client> {
+export async function createClient(
+  clientMetadata: Omit<ClientMetadata, "client_id" | "client_uri">
+): Promise<Client> {
   const createdAt = DateTime.now();
   const cid = await cidForCbor(clientMetadata);
   const serializedMetadata = JSON.stringify(clientMetadata);

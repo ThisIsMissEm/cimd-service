@@ -5,10 +5,15 @@ import type { CID } from "multiformats";
 import type { AppEnv } from "../app.js";
 import { clientMetadataSchema } from "../schemas/oauthClientMetadata.js";
 import { createClient, getClient, touchClient } from "../models/clients.js";
-import { InternalServerError, NotFoundError } from "../errors.js";
+import {
+  InternalServerError,
+  InvalidRowError,
+  NotFoundError,
+} from "../errors.js";
 
 import env from "../env.js";
 import { stringToJSONSchema } from "../utils.js";
+import { oauthClientMetadataSchema } from "@atproto/oauth-types";
 
 const CLIENT_EXPIRY_MS = env.get("CLIENT_EXPIRY_MS", 24 * 60 * 60);
 
@@ -25,6 +30,15 @@ router.onError((err, c) => {
         error: "invalid_client",
       },
       404
+    );
+  }
+
+  if (err instanceof InvalidRowError) {
+    return c.json(
+      {
+        error: "invalid_client_metadata",
+      },
+      410
     );
   }
 
@@ -49,11 +63,19 @@ router.get("/:id", async (c) => {
     c.header("Expires", expiresAt);
   }
 
-  return c.json({
+  const clientMetadata = {
     ...client.metadata,
     client_id: getClientId(client.cid, c.var.publicUrl),
     client_uri: c.var.publicUrl,
-  });
+  };
+
+  // Revalidate the client metadata we're sending back:
+  const metadata = oauthClientMetadataSchema.safeParse(clientMetadata);
+  if (!metadata.success) {
+    throw new NotFoundError();
+  }
+
+  return c.json(metadata.data);
 });
 
 router.post("/", async (c) => {
