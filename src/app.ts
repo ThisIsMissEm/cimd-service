@@ -71,7 +71,7 @@ router.get("/_health", async function (c) {
       {
         name,
         version,
-        error: "Service Unavailable",
+        error: "service_unavailable",
       },
       503
     );

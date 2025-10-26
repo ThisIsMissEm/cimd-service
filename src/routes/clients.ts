@@ -8,6 +8,7 @@ import { createClient, getClient, touchClient } from "../models/clients.js";
 import { InternalServerError, NotFoundError } from "../errors.js";
 
 import env from "../env.js";
+import { stringToJSONSchema } from "../utils.js";
 
 const CLIENT_EXPIRY_MS = env.get("CLIENT_EXPIRY_MS", 24 * 60 * 60);
 
@@ -55,8 +56,8 @@ router.get("/:id", async (c) => {
 });
 
 router.post("/", async (c) => {
-  const input = await c.req.json();
-  const result = clientMetadataSchema.safeParse(input);
+  const input = await c.req.text();
+  const result = stringToJSONSchema.pipe(clientMetadataSchema).safeParse(input);
 
   if (!result.success) {
     c.status(400);
