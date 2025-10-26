@@ -17,7 +17,7 @@ export default ({ name, version }: Metadata) => {
 <title>${name} @ ${version}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="CIMD Service - OAuth Client ID Metadata Document Service">
-<meta property="og:description" content="Send this service your Client ID Metadata Document in development, and it will return you a URL to a publicly available copy.">
+<meta property="og:description" content="In development, send this service your Client ID Metadata Document, and it will return you a URL to a publicly available copy.">
 <meta property="og:url" content="${publicUrl}">
 <meta property="og:site_name" content="CIMD Service">
 <meta property="og:locale" content="en_US">
@@ -71,7 +71,7 @@ export default ({ name, version }: Metadata) => {
   <div id="main">
   <h1>${name} @ ${version}</h1>
 
-  <p>Send this service your Client ID Metadata Document in development, and it will return
+  <p>In development, send this service your <strong>Client ID Metadata Document</strong>, and it will return
 you a URL to a publicly available copy.<p>
 
   <p>What are Client ID Metadata Documents? See: <a href="https://cimd.dev/">https://cimd.dev</a></p>
