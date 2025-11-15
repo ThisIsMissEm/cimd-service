@@ -17,5 +17,7 @@ export async function getDb(): Promise<DatabaseSync> {
     url: `sqlite:${DATABASE_PATH}`,
   });
 
+  database.exec(`PRAGMA journal_mode = WAL`);
+
   return database;
 }
